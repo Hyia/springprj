@@ -20,3 +20,9 @@
 !/src/test/java/java24
 /.classpath
 /.project
+/.settings
+/gradlew.bat
+/jcurses-0.9.5.3.jar
+/settings.gradle
+/gradlew
+/gradle
