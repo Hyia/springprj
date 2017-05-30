@@ -18,3 +18,5 @@
 !/src/test/java
 /src/test/java/*
 !/src/test/java/java24
+/.classpath
+/.project
