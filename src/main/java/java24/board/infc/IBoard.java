@@ -50,7 +50,7 @@ public interface IBoard {
 	 * @param data :맵에 들어갈 정보의 이름<br>1.boardcd<br>2.searchWord 검색어<br>3.start 페이지 시작게시글 번호<br>4.end 페이지 마지막 번호를 가짐
 	 * @return ModelArticle : 목표 게시목록
 	 */
-	ModelArticle getArticleList(HashMap data);
+    List<ModelArticle> getArticleList(HashMap<String,Object> data);
 
 	//<select id="getArticle" parameterType="int" resultType="ModelArticle">
 	/** 게시글을 가져옴
@@ -71,7 +71,7 @@ public interface IBoard {
 	 * @param data :HashMap keys<br>searchValue :고칠 게시글<br>updateValue :바꿀 내용
 	 * @return 성실여부
 	 */
-	int updateArticle(HashMap data);
+	int updateArticle(HashMap<String,ModelArticle> data);
 	
     //<delete id="deleteArticle" parameterType="ModelArticle">
 	/** 게시글 삭제
@@ -92,14 +92,14 @@ public interface IBoard {
 	 * @param articleMap :<br>articleNo (int)<br>boardcd (int)<br>searchWord (String)를 사용
 	 * @return 대상 게시글
 	 */
-	ModelArticle getNextArticle(HashMap articleMap);
+	ModelArticle getNextArticle(HashMap<String,Object> articleMap);
 	
     //<select id="getPrevArticle" parameterType="hashmap" resultType="ModelArticle">
 	/** 이전 게시글로 이동
 	 * @param articleMap :articleNo,boardcd, 검색어(searchWord)를 사용
 	 * @return 대상 게시글
 	 */
-	ModelArticle getPrevArticle(HashMap articleMap);
+	ModelArticle getPrevArticle(HashMap<String,Object> articleMap);
 	
     //<select id="getAttachFile" parameterType="int" resultType="ModelAttachFile">
 	/** 첨부파일을 가져옴
@@ -155,7 +155,7 @@ public interface IBoard {
 	 * @param commentMap :두 ModelComments를 맵 안에 넣기(updateValue,searchValue)
 	 * @return
 	 */
-	int updateComment(HashMap commentMap);
+	int updateComment(HashMap<String,ModelComments> commentMap);
 	
     //<delete id="deleteComment" parameterType="ModelComments">
 	/** 댓삭튀
