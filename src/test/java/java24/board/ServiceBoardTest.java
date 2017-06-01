@@ -49,6 +49,7 @@ public class ServiceBoardTest {
 		}
 		assertNotNull(baord);
 		assertEquals(baord.getBoardnm(), "자료실");
+		//def
 	}
 
 	@Test
