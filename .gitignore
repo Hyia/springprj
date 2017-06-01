@@ -15,7 +15,6 @@
 !/src/main/resources/*.xml
 !/src/main/resources/*.properties
 !/src/main/resources/java24/
-!/src/test/java
 /src/test/java/*
 !/src/test/java/java24
 /.classpath
