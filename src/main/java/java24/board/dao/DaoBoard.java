@@ -42,12 +42,12 @@ public class DaoBoard implements IDaoBoard {
         return result;
 	}
 
-	@Override
-	public ModelBoard getBoardOne(String boardcd) throws Exception {
-        List<ModelBoard> result=null;
-        result = session.selectList("mapper.mapperBoard.getBoardOne", boardcd);
-        return result.get(0);
-	}
+    @Override
+    public ModelBoard getBoardOne(String boardcd) throws Exception {
+        ModelBoard result = null;
+        result = session.selectOne("mapper.mapperBoard.getBoardName",boardcd);
+        return result;
+    }
 
 	@Override
 	public List<ModelBoard> getBoardList() throws Exception {
@@ -95,23 +95,23 @@ public class DaoBoard implements IDaoBoard {
 	}
 
 	@Override
-	public List<ModelBoard> getBoardPaging(ModelBoard board) throws Exception {
+	public List<ModelBoard> getBoardPaging(HashMap<String, Object> map) throws Exception {
         List<ModelBoard> result=null;
-        result = session.selectList("mapper.mapperBoard.getBoardPaging",board);
+        result = session.selectList("mapper.mapperBoard.getBoardPaging",map);
         return result;
 	}
 
 	@Override
-	public int insertBoardList(List<ModelBoard> board) throws Exception {
+	public int insertBoardList(List<ModelBoard> item) throws Exception {
         int result= -1;
-        result = session.insert("mapper.mapperBoard.insertBoardList",board);
+        result = session.insert("mapper.mapperBoard.insertBoardList",item);
         return result;
 	}
 
 	@Override
-	public int getArticleTotalRecord(ModelBoard article) throws Exception {
+	public int getArticleTotalRecord(HashMap<String, Object> map) throws Exception {
         int result= -1;
-        result = session.selectOne("mapper.mapperBoard.getArticleTotalRecord", article);
+        result = session.selectOne("mapper.mapperBoard.getArticleTotalRecord", map);
         return result;
 	}
 
@@ -122,12 +122,12 @@ public class DaoBoard implements IDaoBoard {
         return result;
 	}
 
-	@Override
-	public ModelArticle getArticle(Integer articleNo) {
-        List<ModelArticle> result=null;
-        result = session.selectList("mapper.mapperBoard.getArticleList",articleNo);
-        return result.get(0);
-	}
+    @Override
+    public ModelArticle getArticle(Integer articleNo) {
+        ModelArticle result = null;
+        result = session.selectOne("mapper.mapperBoard.getArticle",articleNo);
+        return result;
+    }
 
 	@Override
 	public int insertArticle(ModelArticle article) {

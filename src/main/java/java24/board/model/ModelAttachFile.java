@@ -5,14 +5,14 @@ import java.util.Date;
 public class ModelAttachFile {
 
 	private   Integer    attachfileno	=null;	//	` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-	private   String     filename		=null;	//	` VARCHAR(50) NOT NULL,
-	private   String     filetype		=null;	//	` VARCHAR(30) NULL DEFAULT NULL,
+	private   String     filename		=""  ;	//	` VARCHAR(50) NOT NULL,
+	private   String     filetype		="";	//	` VARCHAR(30) NULL DEFAULT NULL,
 	private   Integer    filesize		=null;	//	` INT(11) NULL DEFAULT NULL,
 	private   Integer    articleno		=null;	//	` INT(11) NULL DEFAULT NULL,
 	private   Boolean    UseYN			=null;	//	` TINYINT(1) NULL DEFAULT '1',
-	private   String     InsertUID		=null;	//	` VARCHAR(40) NULL DEFAULT NULL,
+	private   String     InsertUID		="";	//	` VARCHAR(40) NULL DEFAULT NULL,
 	private   Date       InsertDT		=null;	//	` DATETIME NULL DEFAULT NULL,
-	private   String     UpdateUID		=null;	//	` VARCHAR(40) NULL DEFAULT NULL,
+	private   String     UpdateUID		="";	//	` VARCHAR(40) NULL DEFAULT NULL,
 	private   Date       UpdateDT		=null;	//	` DATETIME NULL DEFAULT NULL,
 	private   Byte[]     imageData		=null;	//	` LONGBLOB NULL,
 	

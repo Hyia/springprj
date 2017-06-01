@@ -129,10 +129,10 @@ public class ServiceBoard implements IServiceBoard {
 	}
 
 	@Override
-	public List<ModelBoard> getBoardPaging(ModelBoard board) throws Exception {
+	public List<ModelBoard> getBoardPaging(HashMap<String, Object> map) throws Exception {
 		List<ModelBoard> result= null;
         try {
-            result = dao.getBoardPaging(board);
+            result = dao.getBoardPaging(map);
         } catch (Exception e) {
             log.error( "getBoardPaging"+e.getMessage() );
         }
@@ -140,10 +140,10 @@ public class ServiceBoard implements IServiceBoard {
 	}
 
 	@Override
-	public int insertBoardList(List<ModelBoard> board) throws Exception {
+	public int insertBoardList(List<ModelBoard> item) throws Exception {
 		int result= -1;
         try {
-            result = dao.insertBoardList(board);
+            result = dao.insertBoardList(item);
         } catch (Exception e) {
             log.error( "insertBoardList"+e.getMessage() );
         }
@@ -151,10 +151,10 @@ public class ServiceBoard implements IServiceBoard {
 	}
 
 	@Override
-	public int getArticleTotalRecord(ModelBoard article) throws Exception {
+	public int getArticleTotalRecord(HashMap<String, Object> map) throws Exception {
 		int result= -1;
         try {
-            result = dao.getArticleTotalRecord(article);
+            result = dao.getArticleTotalRecord(map);
         } catch (Exception e) {
             log.error( "getArticleTotalRecord"+e.getMessage() );
         }

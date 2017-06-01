@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import java24.board.model.ModelArticle;
 import java24.board.model.ModelAttachFile;
 import java24.board.model.ModelBoard;
@@ -33,11 +35,11 @@ public interface IBoard {
     
     List<ModelBoard> getBoardSearch(ModelBoard board) throws Exception;
     
-    List<ModelBoard> getBoardPaging(ModelBoard board) throws Exception;
+    List<ModelBoard> getBoardPaging(HashMap<String, Object> map) throws Exception;
     
-    int insertBoardList(List<ModelBoard> board) throws Exception;
+    int insertBoardList(@Param("list") List<ModelBoard> item) throws Exception;
     
-    int getArticleTotalRecord(ModelBoard article) throws Exception;
+    int getArticleTotalRecord(HashMap<String, Object> map) throws Exception;
 	
 	/** 
 	 * mapperBoard.xml 의 line 141 이후에 대한 IBoard작성.
