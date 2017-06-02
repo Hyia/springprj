@@ -73,7 +73,7 @@ public interface IBoard {
 	 * @param data :HashMap keys<br>searchValue :고칠 게시글<br>updateValue :바꿀 내용
 	 * @return 성실여부
 	 */
-	int updateArticle(HashMap<String,ModelArticle> data);
+	int updateArticle(ModelArticle searchValue, ModelArticle updateValue);
 	
     //<delete id="deleteArticle" parameterType="ModelArticle">
 	/** 게시글 삭제
@@ -157,7 +157,7 @@ public interface IBoard {
 	 * @param commentMap :두 ModelComments를 맵 안에 넣기(updateValue,searchValue)
 	 * @return
 	 */
-	int updateComment(HashMap<String,ModelComments> commentMap);
+	int updateComment(ModelComments searchValue, ModelComments updateValue);
 	
     //<delete id="deleteComment" parameterType="ModelComments">
 	/** 댓삭튀

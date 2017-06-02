@@ -137,9 +137,12 @@ public class DaoBoard implements IDaoBoard {
 	}
 
 	@Override
-	public int updateArticle(HashMap<String,ModelArticle> data) {
-        int result= -1;
-        result = session.update("mapper.mapperBoard.updateArticle",data);
+	public int updateArticle(ModelArticle searchValue, ModelArticle updateValue) {
+	    int result= -1;
+        Map<String,ModelArticle> map = new HashMap<String,ModelArticle>();
+        map.put("searchValue", searchValue);
+        map.put("updateValue", updateValue);        
+        result = session.update("mapper.mapperBoard.updateArticle",map);
         return result;
 	}
 
@@ -229,9 +232,12 @@ public class DaoBoard implements IDaoBoard {
 	}
 
 	@Override
-	public int updateComment(HashMap<String, ModelComments> commentMap) {
-        int result= -1;
-        result = session.update("mapper.mapperBoard.updateComment",commentMap);
+	public int updateComment(ModelComments searchValue, ModelComments updateValue) {
+	    int result= -1;
+        Map<String,ModelComments> map = new HashMap<String,ModelComments>();
+        map.put("searchValue", searchValue);
+        map.put("updateValue", updateValue);        
+        result = session.update("mapper.mapperBoard.updateArticle",map);
         return result;
 	}
 

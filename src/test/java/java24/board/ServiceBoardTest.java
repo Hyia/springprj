@@ -14,7 +14,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java23.mybatis.infc.IServiceBook;
 import java24.board.infc.IServiceBoard;
+import java24.board.model.ModelArticle;
+import java24.board.model.ModelAttachFile;
 import java24.board.model.ModelBoard;
+import java24.board.model.ModelComments;
 
 public class ServiceBoardTest {
     private static IServiceBoard service=null;
@@ -44,15 +47,11 @@ public class ServiceBoardTest {
     @Test
     public void testGetBoardOne() {
         ModelBoard result = null;
-        ModelBoard board = new ModelBoard();
-        board.setBoardnm("자료실");
-        board.setBoardcd("data");
-        board.setUseYN(true);
         try {
-            result = service.getBoardOne("data");
+            result = service.getBoardOne("free");
         } catch (Exception e) {
         }
-        assertEquals(result,board);
+        assertNotNull(result);
         
     }
     
@@ -89,10 +88,6 @@ public class ServiceBoardTest {
         } catch (Exception e) {
         }
         assertSame(result, 1);
-        try {
-            service.deleteBoard(board);
-        } catch (Exception e) {
-        }
     }
     
     @Test
@@ -107,30 +102,25 @@ public class ServiceBoardTest {
         nboard.setUseYN(false);
         int result = -1;
         try {
-            service.insertBoard(board);
             result = service.updateBoard(board, nboard);
         } catch (Exception e) {
         }
         assertSame(result, 1);
-        try {
-            service.deleteBoard(board);
-        } catch (Exception e) {
-        }
     }
     
     @Test
     public void testDeleteBoard() {
-        ModelBoard board = new ModelBoard();
-        board.setBoardnm("test");
-        board.setBoardcd("test");
-        board.setUseYN(true);
+        ModelBoard nboard = new ModelBoard();
+        nboard.setBoardnm("update");
+        nboard.setBoardcd("update");
+        nboard.setUseYN(false);
         int result = -1;
         try {
-            service.insertBoard(board);
+            service.insertBoard(nboard);
         } catch (Exception e) {
         }
         try {
-            result = service.deleteBoard(board);
+            result = service.deleteBoard(nboard);
         } catch (Exception e) {
         }
         assertSame(result, 1);
@@ -192,99 +182,225 @@ public class ServiceBoardTest {
     public void testGetArticleTotalRecord() {
         int result = -1;
         HashMap<String, Object> map = new HashMap<String, Object>();
-        map.put("searchWord","자료실");
-        map.put("boardcd","data");
+        map.put("searchWord","test");
+        map.put("boardcd","free");
         map.put("start",0);
         map.put("end",99);
         try {
             result = service.getArticleTotalRecord(map);
         } catch (Exception e) {}
-        
+        assertSame(result, 14);
     }
     
     @Test
     public void testGetArticleList() {
-        fail("Not yet implemented");
+        List<ModelArticle> result =null;
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("searchWord","test");
+        try {
+            result = service.getArticleList(map);
+        } catch (Exception e) {}
+        assertSame(result.size(),0);
+        
     }
     
     @Test
     public void testGetArticle() {
-        fail("Not yet implemented");
+        ModelArticle result =null;
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("searchWord","test");
+        try {
+            result = service.getArticle(10);
+        } catch (Exception e) {}
+        assertNotNull(result);
     }
     
     @Test
     public void testInsertArticle() {
-        fail("Not yet implemented");
+        ModelArticle article = new ModelArticle();
+        article.setBoardcd("free");
+        article.setTitle("test");
+        article.setUseYN(true);
+        article.setContent("test");
+        article.setEmail("test@test.test");
+        article.setArticleno(99);
+        int result = -1;
+        try {
+            result = service.insertArticle(article);
+        } catch (Exception e) {
+        }
+        assertSame(result, 1);
     }
     
     @Test
     public void testUpdateArticle() {
-        fail("Not yet implemented");
+        int result = -1;
+        ModelArticle article= new ModelArticle();
+        article.setTitle("test");
+        article.setBoardcd("free");
+        article.setUseYN(true);
+        ModelArticle article1= new ModelArticle();
+        article1.setTitle("Update");
+        article1.setUseYN(false);
+        try {
+            result = service.updateArticle(article,article1);
+        } catch (Exception e) {
+        }
+        assertSame(result, 1);
     }
     
     @Test
     public void testDeleteArticle() {
-        fail("Not yet implemented");
+        int result = -1;
+        ModelArticle article= new ModelArticle();
+        article.setTitle("Update");
+        article.setBoardcd("free");
+        article.setUseYN(false);
+        try {
+            result = service.deleteArticle(article);
+        } catch (Exception e) {
+        }
+        assertSame(result, 1);
     }
     
     @Test
     public void testIncreaseHit() {
-        fail("Not yet implemented");
+        int result = -1;
+        try {
+            result = service.increaseHit(24);
+        } catch (Exception e) {
+        }
+        assertSame(result, 1);
     }
     
     @Test
     public void testGetNextArticle() {
-        fail("Not yet implemented");
+        ModelArticle result = null;
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("articleno", 1);
+        map.put("boardcd","free");
+        map.put("searchWord","");
+        try {
+            result = service.getNextArticle(map);
+        } catch (Exception e) {
+        }
+        
     }
     
     @Test
     public void testGetPrevArticle() {
-        fail("Not yet implemented");
+        ModelArticle result = null;
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        map.put("articleno", 2);
+        map.put("boardcd","free");
+        try {
+            result = service.getPrevArticle(map);
+        } catch (Exception e) {
+        }
+    
     }
     
     @Test
     public void testGetAttachFile() {
-        fail("Not yet implemented");
+        ModelAttachFile result = null;
+        try {
+            result = service.getAttachFile(1);
+        } catch (Exception e) {
+        }
+        assertNotNull(result);
     }
     
     @Test
     public void testGetAttachFileList() {
-        fail("Not yet implemented");
+        ModelAttachFile result = new ModelAttachFile();
+        try {
+            result = service.getAttachFileList(1);
+        } catch (Exception e) {
+        }
+        assertNotNull(result);
     }
     
     @Test
     public void testInsertAttachFile() {
-        fail("Not yet implemented");
+        ModelAttachFile att = new ModelAttachFile();
+        att.setFilename("test");
+        int result = -1;
+        try {
+            result = service.insertAttachFile(att);
+        } catch (Exception e) {
+        }
+        assertSame(result, 1);
     }
     
     @Test
     public void testDeleteAttachFile() {
-        fail("Not yet implemented");
+        ModelAttachFile att = new ModelAttachFile();
+        att.setFilename("test");
+        att.setAttachfileno(12);
+        int result = -1;
+        try {
+            result = service.deleteAttachFile(att);
+        } catch (Exception e) {
+        }
+        assertSame(result, 1);
     }
     
     @Test
     public void testGetComment() {
-        fail("Not yet implemented");
+        ModelComments result = null;
+        try {
+            result = service.getComment(1);
+        } catch (Exception e) {
+        }
+        assertNotNull(result);
     }
     
     @Test
     public void testGetCommentList() {
-        fail("Not yet implemented");
+        ModelComments result = null;
+        try {
+            result = service.getComment(1);
+        } catch (Exception e) {
+        }
+        assertNotNull(result);
     }
     
     @Test
     public void testInsertComment() {
-        fail("Not yet implemented");
+        ModelComments comm = new ModelComments();
+        comm.setArticleno(8);
+        int result = -1;
+        try {
+            result = service.insertComment(comm);
+        } catch (Exception e) {
+        }
+        assertSame(result, 1);
     }
     
     @Test
     public void testUpdateComment() {
-        fail("Not yet implemented");
+        int result = -1;
+        ModelComments comm= new ModelComments();
+        comm.setArticleno(8);
+        ModelComments comm1= new ModelComments();
+        comm.setEmail("test@test.test");
+        try {
+            result = service.updateComment(comm,comm1);
+        } catch (Exception e) {
+        }
+        assertSame(result, 1);
     }
     
     @Test
     public void testDeleteComment() {
-        fail("Not yet implemented");
+        ModelComments comm = new ModelComments();
+        comm.setArticleno(8);
+        int result = -1;
+        try {
+            result = service.deleteComment(comm);
+        } catch (Exception e) {
+        }
+        assertSame(result, 1);
     }
     
 }

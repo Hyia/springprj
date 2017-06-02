@@ -195,10 +195,10 @@ public class ServiceBoard implements IServiceBoard {
 	}
 
 	@Override
-	public int updateArticle(HashMap<String, ModelArticle> data) {
+	public int updateArticle(ModelArticle searchValue, ModelArticle updateValue) {
 		int result= -1;
         try {
-            result = dao.updateArticle(data);
+            result = dao.updateArticle(searchValue,updateValue);
         } catch (Exception e) {
             log.error( "updateArticle"+e.getMessage() );
         }
@@ -327,10 +327,10 @@ public class ServiceBoard implements IServiceBoard {
 	}
 
 	@Override
-	public int updateComment(HashMap<String, ModelComments> commentMap) {
+	public int updateComment(ModelComments searchValue, ModelComments updateValue) {
 		int result= -1;
         try {
-            result = dao.updateComment(commentMap);
+            result = dao.updateComment(searchValue,updateValue);
         } catch (Exception e) {
             log.error( "updateComment"+e.getMessage() );
         }
